@@ -1,13 +1,30 @@
 
 import ProductRow from './ProductRow';
+import  { useState } from 'react';
+import SearchBar from './SearchBar';
 
-function ProductsTable () {
+const ProductsTable = props => {
 
+  const [query, setQuery] = useState('')
+  
+  const [queryCheck, setQueryCheck] = useState('')
   
   return(
       <div>
-        <h1>ProductRow</h1>
-        <ProductRow />
+      <SearchBar setQuery={setQuery} setQueryCheck={setQueryCheck}  />
+       <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <ProductRow 
+        products={props.products}
+         query={query} 
+         queryCheck={queryCheck}
+         />
+      </table>
       </div>    
   )
 }
